@@ -1,5 +1,5 @@
 <template>
-  <h1><font-awesome-icon icon="home" /> Home</h1>
+  <h1><font-awesome-icon icon="home" /> Home <hello-world></hello-world> </h1>
 </template>
 
 <script>

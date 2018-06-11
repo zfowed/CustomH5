@@ -4,11 +4,11 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import fontawesome from './plugins/vue-fontawesome';
+
+import './plugins';
+import './components';
 
 Vue.config.productionTip = false;
-
-Vue.use(fontawesome);
 
 /* eslint-disable no-new */
 new Vue({
