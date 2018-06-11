@@ -1,7 +1,5 @@
 <template>
-  <div>
-    Home
-  </div>
+  <h1><font-awesome-icon icon="home" /> Home</h1>
 </template>
 
 <script>
