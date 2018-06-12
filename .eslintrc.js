@@ -47,5 +47,8 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
+    // off或0: 禁用规则
+    'linebreak-style': ['error', 'windows']
+
   },
 }
