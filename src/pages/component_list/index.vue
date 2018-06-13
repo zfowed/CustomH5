@@ -1,10 +1,10 @@
 <template>
-  <h1><font-awesome-icon icon="home" /> 首页</h1>
+  <h1>组件列表</h1>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'component_list',
 };
 </script>
 
