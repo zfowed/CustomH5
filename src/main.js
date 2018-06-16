@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 
+import './utils';
 import './plugins';
 import './components';
 

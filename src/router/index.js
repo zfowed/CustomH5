@@ -25,7 +25,7 @@ export default new Router({
       component: (resolve, reject) => import('@/pages/project_edit').then(resolve, reject),
     },
     {
-      path: '/project/:id',
+      path: '/project/:uuid',
       name: 'project_edit',
       component: (resolve, reject) => import('@/pages/project_edit').then(resolve, reject),
     },
