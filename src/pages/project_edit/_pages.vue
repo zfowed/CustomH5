@@ -13,7 +13,8 @@
       :label="page.name"
       :name="page.uuid"
     >
-      <component-page :page="page"></component-page>
+      <span class="tab-label" slot="label">{{page.name}}</span>
+      <component-page :page="page" :check-page-name="checkPageName"></component-page>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -39,25 +40,33 @@ export default {
       return this.pageChange(page);
     },
     tabsAdd() {
+      return this.promptAddPage((value) => {
+        this.pageAdd(value);
+      });
+    },
+    tabsRemove(uuid) {
+      this.confirmRemovePage(() => {
+        const pages = this.projectEdit.project.pages;
+        const pageIndex = pages.findIndex(item => item.uuid === uuid);
+        pages.splice(pageIndex, 1);
+        const nextPage = pages[pageIndex] || pages[pages.length - 1] || null;
+        if (nextPage) {
+          this.pageChange(nextPage);
+        } else {
+          this.pageAdd('main');
+        }
+      });
+    },
+    pageAdd(name) {
       const page = {
         uuid: this.$utils.uuid(),
-        name: '新页面',
+        name,
         style: '',
         script: '',
         components: [],
       };
       this.projectEdit.project.pages.push(page);
-      return this.pageChange(page);
-    },
-    tabsRemove(name) {
-      const pageIndex = this.projectEdit.project.pages.findIndex(item => item.uuid === name);
-      const page = this.projectEdit.project.pages[pageIndex];
-      if (this.projectEdit.project.pages.length <= 1) {
-        return this.pageChange(page);
-      }
-      const prevPage = this.projectEdit.project.pages[pageIndex - 1];
-      this.projectEdit.project.pages.splice(pageIndex, 1);
-      return this.pageChange(prevPage);
+      this.pageChange(page);
     },
     pageChange(page = this.projectEdit.project.pages[0]) {
       if (!page) { return null; }
@@ -65,25 +74,46 @@ export default {
       this.tagsModel = page.uuid;
       return page;
     },
+    promptAddPage(callback) {
+      this.$prompt('请输入新页面的名称', '提示', {
+        confirmButtonText: '创建页面',
+        inputValidator: value => this.checkPageName(value),
+      }).then(({ value }) => callback(value), () => null);
+    },
+    confirmRemovePage(callback) {
+      this.$confirm('此操作将删除该页面, 是否继续?', '警告', {
+        confirmButtonText: '删除',
+        type: 'warning',
+      }).then(() => callback(), () => null);
+    },
+    checkPageName(name) {
+      if (!name) {
+        return '标题不允许为空！';
+      }
+      const page = this.projectEdit.project.pages.find(item => item.name === name);
+      if (page) {
+        return `已经存在 [${name}] 页面了`;
+      }
+      return true;
+    },
   },
   created() {
     if (!this.projectEdit.project.pages.length) {
-      this.tabsAdd();
+      this.pageAdd('main');
     }
+    this.pageChange(this.projectEdit.page || this.projectEdit.project.pages[0]);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.header {
-  padding: 0;
-}
-.main {
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-right: 0;
-}
-.main-card {
-  box-shadow: none;
+.tab-label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 85px;
+  overflow: hidden;
+  vertical-align: middle;
 }
 </style>

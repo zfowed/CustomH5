@@ -16,10 +16,10 @@
           </div>
           <div class="box__content">
             <div class="box__content__title">
-              <small>添加页面</small>
+              <small>添加项目</small>
             </div>
             <div class="box__content__subtitle">
-              <small>添加、修改页面</small>
+              <small>添加新的项目</small>
             </div>
           </div>
         </router-link>
@@ -29,10 +29,10 @@
           </div>
           <div class="box__content">
             <div class="box__content__title">
-              <small>页面列表</small>
+              <small>项目列表</small>
             </div>
             <div class="box__content__subtitle">
-              <small>查看页面列表</small>
+              <small>查看项目列表</small>
             </div>
           </div>
         </router-link>
@@ -87,7 +87,7 @@ export default {
 
     .header {
       width: 100%;
-      padding: 10px 0;
+      padding: 50px 0 10px;
       text-align: center;
 
       .title {
@@ -105,7 +105,7 @@ export default {
 
         .container {
           width: 100%;
-          height: 300px;
+          height: 200px;
           margin: auto;
 
           a {

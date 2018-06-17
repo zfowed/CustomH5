@@ -1,5 +1,7 @@
 <template>
-  <h1>项目列表</h1>
+  <layout-pages>
+    <h1>项目列表</h1>
+  </layout-pages>
 </template>
 
 <script>

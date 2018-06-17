@@ -1,20 +1,14 @@
 
 import {
   Input,
-  InputNumber,
   Button,
-  ButtonGroup,
   Table,
   TableColumn,
   Form,
   FormItem,
   Tabs,
-  Card,
   TabPane,
-  Container,
-  Header,
-  Aside,
-  Main,
+  MessageBox,
 } from 'element-ui';
 
 
@@ -24,20 +18,20 @@ export default {
     // Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
 
     Vue.use(Input);
-    Vue.use(InputNumber);
     Vue.use(Button);
-    Vue.use(ButtonGroup);
     Vue.use(Table);
     Vue.use(TableColumn);
     Vue.use(Form);
     Vue.use(FormItem);
     Vue.use(Tabs);
-    Vue.use(Card);
     Vue.use(TabPane);
-    Vue.use(Container);
-    Vue.use(Header);
-    Vue.use(Aside);
-    Vue.use(Main);
+
+    Object.assign(Vue.prototype, {
+      $msgbox: MessageBox,
+      $alert: MessageBox.alert,
+      $confirm: MessageBox.confirm,
+      $prompt: MessageBox.prompt,
+    });
   },
 
 };

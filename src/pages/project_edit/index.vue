@@ -1,21 +1,23 @@
 <template>
-  <el-tabs type="border-card" v-model="activeName">
-    <el-tab-pane label="项目" name="project">
-      <component-project></component-project>
-    </el-tab-pane>
-    <el-tab-pane label="页面" name="pages">
-      <component-pages></component-pages>
-    </el-tab-pane>
-    <el-tab-pane label="组件" name="components">
-      组件配置
-    </el-tab-pane>
-    <el-tab-pane label="预览" name="preview">
-      预览
-    </el-tab-pane>
-    <el-tab-pane label="导出" name="export">
-      导出
-    </el-tab-pane>
-  </el-tabs>
+  <layout-pages>
+    <el-tabs type="border-card" v-model="activeName" class="tabs">
+      <el-tab-pane label="项目" name="project">
+        <component-project></component-project>
+      </el-tab-pane>
+      <el-tab-pane label="页面" name="pages">
+        <component-pages></component-pages>
+      </el-tab-pane>
+      <el-tab-pane label="组件" name="components">
+        组件配置
+      </el-tab-pane>
+      <el-tab-pane label="预览" name="preview">
+        预览
+      </el-tab-pane>
+      <el-tab-pane label="导出" name="export">
+        导出
+      </el-tab-pane>
+    </el-tabs>
+  </layout-pages>
 </template>
 
 <script>
@@ -63,8 +65,9 @@ export default {
 };
 </script>
 
-<style scoped>
-.tags {
-  padding: 0 20px;
+<style lang="scss" scoped>
+.tabs {
+  border: none;
+  box-shadow: none;
 }
 </style>

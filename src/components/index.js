@@ -2,6 +2,8 @@
 import Vue from 'vue';
 
 const componentsName = [
+  'LayoutPages',
+  'TextEdit',
 ];
 
 const components = {};
