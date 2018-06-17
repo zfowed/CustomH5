@@ -42,6 +42,7 @@ export default {
       this.$prompt(this.message, this.title, {
         inputValidator: this.validator,
         inputPlaceholder: this.message,
+        inputValue: this.model,
       }).then(({ value }) => {
         this.model = value;
       }, () => null);

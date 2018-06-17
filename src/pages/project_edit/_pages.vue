@@ -8,7 +8,7 @@
     @tab-remove="tabsRemove"
   >
     <el-tab-pane
-      v-for="page in projectEdit.project.pages"
+      v-for="page in pages"
       :key="page.uuid"
       :label="page.name"
       :name="page.uuid"
@@ -34,9 +34,27 @@ export default {
       tagsModel: '',
     };
   },
+  computed: {
+    pages: {
+      get() {
+        return this.projectEdit.project.pages;
+      },
+      set(pages) {
+        this.projectEdit.project.pages = pages;
+      },
+    },
+    page: {
+      get() {
+        return this.projectEdit.page;
+      },
+      set(page) {
+        this.projectEdit.page = page;
+      },
+    },
+  },
   methods: {
     tabsChange(component) {
-      const page = this.projectEdit.project.pages.find(item => item.uuid === component.name);
+      const page = this.pages.find(item => item.uuid === component.name);
       return this.pageChange(page);
     },
     tabsAdd() {
@@ -46,10 +64,9 @@ export default {
     },
     tabsRemove(uuid) {
       this.confirmRemovePage(() => {
-        const pages = this.projectEdit.project.pages;
-        const pageIndex = pages.findIndex(item => item.uuid === uuid);
-        pages.splice(pageIndex, 1);
-        const nextPage = pages[pageIndex] || pages[pages.length - 1] || null;
+        const pageIndex = this.pages.findIndex(page => page.uuid === uuid);
+        this.pages.splice(pageIndex, 1);
+        const nextPage = this.pages[pageIndex] || this.pages[this.pages.length - 1] || null;
         if (nextPage) {
           this.pageChange(nextPage);
         } else {
@@ -65,12 +82,12 @@ export default {
         script: '',
         components: [],
       };
-      this.projectEdit.project.pages.push(page);
+      this.pages.push(page);
       this.pageChange(page);
     },
-    pageChange(page = this.projectEdit.project.pages[0]) {
+    pageChange(page = this.pages[0]) {
       if (!page) { return null; }
-      this.projectEdit.page = page;
+      this.page = page;
       this.tagsModel = page.uuid;
       return page;
     },
@@ -90,7 +107,7 @@ export default {
       if (!name) {
         return '标题不允许为空！';
       }
-      const page = this.projectEdit.project.pages.find(item => item.name === name);
+      const page = this.pages.find(item => item.name === name);
       if (page) {
         return `已经存在 [${name}] 页面了`;
       }
