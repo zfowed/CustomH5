@@ -53,7 +53,7 @@ export default {
         if (nextPage) {
           this.pageChange(nextPage);
         } else {
-          this.pageAdd('main');
+          this.pageAdd('默认页');
         }
       });
     },
@@ -99,7 +99,7 @@ export default {
   },
   created() {
     if (!this.projectEdit.project.pages.length) {
-      this.pageAdd('main');
+      this.pageAdd('默认页');
     }
     this.pageChange(this.projectEdit.page || this.projectEdit.project.pages[0]);
   },
