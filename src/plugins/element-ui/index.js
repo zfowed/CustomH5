@@ -9,6 +9,11 @@ import {
   Tabs,
   TabPane,
   MessageBox,
+  Select,
+  Option,
+  Row,
+  Col,
+  Card,
 } from 'element-ui';
 
 
@@ -25,6 +30,11 @@ export default {
     Vue.use(FormItem);
     Vue.use(Tabs);
     Vue.use(TabPane);
+    Vue.use(Select);
+    Vue.use(Option);
+    Vue.use(Row);
+    Vue.use(Col);
+    Vue.use(Card);
 
     Object.assign(Vue.prototype, {
       $msgbox: MessageBox,
